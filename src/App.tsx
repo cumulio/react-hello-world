@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { CumulioDashboardComponent } from '@cumul.io/react-cumulio-dashboard';
 import './App.css';
 
 function App() {
+  const dashboardId = 'DASHBOARD_ID_HERE';
+  const [key, setKey] = useState('');
+  const [token, setToken] = useState('');
+  useEffect(() => {
+    (async function() {
+      const auth = await fetch('http://localhost:4001').then(response => response.json());
+      setKey(auth.key);
+      setToken(auth.token);
+    })();
+  }, []); 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CumulioDashboardComponent dashboardId={dashboardId} authKey={key} authToken={token}></CumulioDashboardComponent>
     </div>
   );
 }
