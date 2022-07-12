@@ -4,6 +4,8 @@ import './App.css';
 
 function App() {
   const dashboardId = 'DASHBOARD_ID_HERE';
+  const appServer = 'APP_SERVER_HERE';
+  const apiHost = 'API_HOST_HERE';
   const [key, setKey] = useState('');
   const [token, setToken] = useState('');
   useEffect(() => {
@@ -15,7 +17,7 @@ function App() {
   }, []); 
   return (
     <div className="App">
-      <CumulioDashboardComponent dashboardId={dashboardId} authKey={key} authToken={token}></CumulioDashboardComponent>
+      <CumulioDashboardComponent appServer={appServer} apiHost={apiHost} dashboardId={dashboardId} authKey={key} authToken={token}></CumulioDashboardComponent>
     </div>
   );
 }
